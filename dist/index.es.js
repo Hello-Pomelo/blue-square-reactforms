@@ -2801,7 +2801,8 @@ var Form = function (_Component) {
         key: 'handleError',
         value: function handleError(props) {
             if (props.data && props.data.error && props.toast && this.displayError == true) {
-                lib_8.error(props.data.error);
+                var contextValue = useContext(FormTranslationContext);
+                lib_8.error(contextValue.renderText(props.data.error));
                 this.displayError = false;
             }
         }
@@ -2823,11 +2824,19 @@ var Form = function (_Component) {
     }, {
         key: 'renderError',
         value: function renderError() {
+            var _this2 = this;
+
             if (this.state.data && this.state.data.error && !this.props.toast) {
                 return React.createElement(
-                    'p',
-                    { className: 'alert alert-danger' },
-                    this.state.data.error
+                    FormTranslationConsumer,
+                    null,
+                    function (translator) {
+                        return React.createElement(
+                            'p',
+                            { className: 'alert alert-danger' },
+                            translator.renderText(_this2.state.data.error)
+                        );
+                    }
                 );
             }
 
