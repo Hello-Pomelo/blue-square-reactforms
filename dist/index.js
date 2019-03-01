@@ -98,6 +98,37 @@ var FormConsumer = function (_Component) {
     return FormConsumer;
 }(React.Component);
 
+var FormTranslationContext = React__default.createContext({
+    renderText: function renderText(text) {
+        return text;
+    }
+});
+
+var FormTranslationConsumer = function (_Component) {
+    inherits(FormTranslationConsumer, _Component);
+
+    function FormTranslationConsumer() {
+        classCallCheck(this, FormTranslationConsumer);
+        return possibleConstructorReturn(this, (FormTranslationConsumer.__proto__ || Object.getPrototypeOf(FormTranslationConsumer)).apply(this, arguments));
+    }
+
+    createClass(FormTranslationConsumer, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return React__default.createElement(
+                FormTranslationContext.Consumer,
+                null,
+                function (props) {
+                    return _this2.props.children(props);
+                }
+            );
+        }
+    }]);
+    return FormTranslationConsumer;
+}(React.Component);
+
 var FormItemError = function (_Component) {
     inherits(FormItemError, _Component);
 
@@ -107,7 +138,7 @@ var FormItemError = function (_Component) {
     }
 
     createClass(FormItemError, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             var _this2 = this;
 
@@ -124,12 +155,12 @@ var FormItemError = function (_Component) {
             );
         }
     }, {
-        key: "renderError",
+        key: 'renderError',
         value: function renderError(data, translator) {
             return React__default.createElement(
-                "p",
-                { className: "text-danger" },
-                translator.handleText(data.errors[this.props.name].error)
+                'p',
+                { className: 'text-danger' },
+                translator.renderText(data.errors[this.props.name].error)
             );
         }
     }]);
@@ -3292,37 +3323,6 @@ TextArea.defaultProps = {
     className: 'form-control',
     onChangeValue: function onChangeValue(text) {}
 };
-
-var FormTranslationContext = React__default.createContext({
-    renderText: function renderText(text) {
-        return text;
-    }
-});
-
-var FormTranslationConsumer$1 = function (_Component) {
-    inherits(FormTranslationConsumer, _Component);
-
-    function FormTranslationConsumer() {
-        classCallCheck(this, FormTranslationConsumer);
-        return possibleConstructorReturn(this, (FormTranslationConsumer.__proto__ || Object.getPrototypeOf(FormTranslationConsumer)).apply(this, arguments));
-    }
-
-    createClass(FormTranslationConsumer, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return React__default.createElement(
-                FormTranslationContext.Consumer,
-                null,
-                function (props) {
-                    return _this2.props.children(props);
-                }
-            );
-        }
-    }]);
-    return FormTranslationConsumer;
-}(React.Component);
 
 exports.CheckBox = CheckBox;
 exports.Form = Form;

@@ -91,6 +91,37 @@ var FormConsumer = function (_Component) {
     return FormConsumer;
 }(Component);
 
+var FormTranslationContext = React.createContext({
+    renderText: function renderText(text) {
+        return text;
+    }
+});
+
+var FormTranslationConsumer = function (_Component) {
+    inherits(FormTranslationConsumer, _Component);
+
+    function FormTranslationConsumer() {
+        classCallCheck(this, FormTranslationConsumer);
+        return possibleConstructorReturn(this, (FormTranslationConsumer.__proto__ || Object.getPrototypeOf(FormTranslationConsumer)).apply(this, arguments));
+    }
+
+    createClass(FormTranslationConsumer, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return React.createElement(
+                FormTranslationContext.Consumer,
+                null,
+                function (props) {
+                    return _this2.props.children(props);
+                }
+            );
+        }
+    }]);
+    return FormTranslationConsumer;
+}(Component);
+
 var FormItemError = function (_Component) {
     inherits(FormItemError, _Component);
 
@@ -100,7 +131,7 @@ var FormItemError = function (_Component) {
     }
 
     createClass(FormItemError, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             var _this2 = this;
 
@@ -117,12 +148,12 @@ var FormItemError = function (_Component) {
             );
         }
     }, {
-        key: "renderError",
+        key: 'renderError',
         value: function renderError(data, translator) {
             return React.createElement(
-                "p",
-                { className: "text-danger" },
-                translator.handleText(data.errors[this.props.name].error)
+                'p',
+                { className: 'text-danger' },
+                translator.renderText(data.errors[this.props.name].error)
             );
         }
     }]);
@@ -3285,37 +3316,6 @@ TextArea.defaultProps = {
     className: 'form-control',
     onChangeValue: function onChangeValue(text) {}
 };
-
-var FormTranslationContext = React.createContext({
-    renderText: function renderText(text) {
-        return text;
-    }
-});
-
-var FormTranslationConsumer$1 = function (_Component) {
-    inherits(FormTranslationConsumer, _Component);
-
-    function FormTranslationConsumer() {
-        classCallCheck(this, FormTranslationConsumer);
-        return possibleConstructorReturn(this, (FormTranslationConsumer.__proto__ || Object.getPrototypeOf(FormTranslationConsumer)).apply(this, arguments));
-    }
-
-    createClass(FormTranslationConsumer, [{
-        key: 'render',
-        value: function render() {
-            var _this2 = this;
-
-            return React.createElement(
-                FormTranslationContext.Consumer,
-                null,
-                function (props) {
-                    return _this2.props.children(props);
-                }
-            );
-        }
-    }]);
-    return FormTranslationConsumer;
-}(Component);
 
 export { CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea, FormTranslationContext };
 //# sourceMappingURL=index.es.js.map

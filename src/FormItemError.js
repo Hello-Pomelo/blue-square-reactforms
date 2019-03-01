@@ -17,6 +17,6 @@ export default class FormItemError extends Component
 
     renderError(data, translator)
     {
-    	return <p className="text-danger">{translator.handleText(data.errors[this.props.name].error)}</p>
+    	return <p className="text-danger">{translator.renderText(data.errors[this.props.name].error)}</p>
     }
 }
