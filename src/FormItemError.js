@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {FormTranslationConsumer} from './FormTranslationContext'
 
 export default class FormItemError extends Component
 {
