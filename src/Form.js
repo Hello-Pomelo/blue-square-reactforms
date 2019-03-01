@@ -1,8 +1,9 @@
-import React, {Component, useContext} from 'react';
+import React, {Component} from 'react';
 import FormContext from './FormContext';
 import {toast, ToastContainer} from 'react-toastify';
 import FormTranslationContext, {FormTranslationConsumer} from './FormTranslationContext'
-export default class Form extends Component
+
+class ContextAwareForm extends Component
 {
     constructor(props) {
         super(props)
@@ -25,8 +26,7 @@ export default class Form extends Component
     handleError(props)
     {
         if (props.data && props.data.error && props.toast && this.displayError == true) {
-            const contextValue = useContext(FormTranslationContext);
-            toast.error(contextValue.renderText(props.data.error))
+            toast.error(this.props.translator.renderText(props.data.error))
             this.displayError = false
         }
     }
@@ -56,15 +56,25 @@ export default class Form extends Component
         if (this.state.data && this.state.data.error && !this.props.toast)
         {
             return (
-                <FormTranslationConsumer>
-                    {(translator) => (
-                        <p className="alert alert-danger">{translator.renderText(this.state.data.error)}</p>
-                    )}
-                </FormTranslationConsumer>
+                <p className="alert alert-danger">{this.props.translator.renderText(this.state.data.error)}</p>
             )
         }
 
         return null
+    }
+}
+
+export default class Form extends Component
+{
+    render()
+    {
+        return (
+            <FormTranslationConsumer>
+                {(translator) => (
+                    <ContextAwareForm translator={translator} {...this.props}/>
+                )}
+            </FormTranslationConsumer>
+        )
     }
 }
 

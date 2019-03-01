@@ -2772,13 +2772,13 @@ var lib_7 = lib.ToastType;
 var lib_8 = lib.toast;
 var lib_9 = lib.cssTransition;
 
-var Form = function (_Component) {
-    inherits(Form, _Component);
+var ContextAwareForm = function (_Component) {
+    inherits(ContextAwareForm, _Component);
 
-    function Form(props) {
-        classCallCheck(this, Form);
+    function ContextAwareForm(props) {
+        classCallCheck(this, ContextAwareForm);
 
-        var _this = possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).call(this, props));
+        var _this = possibleConstructorReturn(this, (ContextAwareForm.__proto__ || Object.getPrototypeOf(ContextAwareForm)).call(this, props));
 
         _this._onSubmit = function (e) {
             e.preventDefault();
@@ -2796,7 +2796,7 @@ var Form = function (_Component) {
         return _this;
     }
 
-    createClass(Form, [{
+    createClass(ContextAwareForm, [{
         key: 'componentWillReceiveProps',
         value: function componentWillReceiveProps(props) {
             this.handleError(props);
@@ -2808,8 +2808,7 @@ var Form = function (_Component) {
         key: 'handleError',
         value: function handleError(props) {
             if (props.data && props.data.error && props.toast && this.displayError == true) {
-                var contextValue = React.useContext(FormTranslationContext);
-                lib_8.error(contextValue.renderText(props.data.error));
+                lib_8.error(this.props.translator.renderText(props.data.error));
                 this.displayError = false;
             }
         }
@@ -2831,23 +2830,40 @@ var Form = function (_Component) {
     }, {
         key: 'renderError',
         value: function renderError() {
-            var _this2 = this;
-
             if (this.state.data && this.state.data.error && !this.props.toast) {
                 return React__default.createElement(
-                    FormTranslationConsumer,
-                    null,
-                    function (translator) {
-                        return React__default.createElement(
-                            'p',
-                            { className: 'alert alert-danger' },
-                            translator.renderText(_this2.state.data.error)
-                        );
-                    }
+                    'p',
+                    { className: 'alert alert-danger' },
+                    this.props.translator.renderText(this.state.data.error)
                 );
             }
 
             return null;
+        }
+    }]);
+    return ContextAwareForm;
+}(React.Component);
+
+var Form = function (_Component2) {
+    inherits(Form, _Component2);
+
+    function Form() {
+        classCallCheck(this, Form);
+        return possibleConstructorReturn(this, (Form.__proto__ || Object.getPrototypeOf(Form)).apply(this, arguments));
+    }
+
+    createClass(Form, [{
+        key: 'render',
+        value: function render() {
+            var _this3 = this;
+
+            return React__default.createElement(
+                FormTranslationConsumer,
+                null,
+                function (translator) {
+                    return React__default.createElement(ContextAwareForm, _extends({ translator: translator }, _this3.props));
+                }
+            );
         }
     }]);
     return Form;
