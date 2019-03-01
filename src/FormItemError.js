@@ -8,7 +8,14 @@ export default class FormItemError extends Component
         if (!data || !data.errors || !data.errors[this.props.name]) return null
 
         return (
-            <p className="text-danger">{data.errors[this.props.name].error}</p>
+        	<FormTranslationConsumer>
+            	{(translator) => this.renderError(data, translator)}
+            </FormTranslationConsumer>
         )
+    }
+
+    renderError(data, translator)
+    {
+    	return <p className="text-danger">{translator.handleText(data.errors[this.props.name].error)}</p>
     }
 }

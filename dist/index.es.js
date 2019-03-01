@@ -102,14 +102,27 @@ var FormItemError = function (_Component) {
     createClass(FormItemError, [{
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             var data = this.props.data;
 
             if (!data || !data.errors || !data.errors[this.props.name]) return null;
 
             return React.createElement(
+                FormTranslationConsumer,
+                null,
+                function (translator) {
+                    return _this2.renderError(data, translator);
+                }
+            );
+        }
+    }, {
+        key: "renderError",
+        value: function renderError(data, translator) {
+            return React.createElement(
                 "p",
                 { className: "text-danger" },
-                data.errors[this.props.name].error
+                translator.handleText(data.errors[this.props.name].error)
             );
         }
     }]);
@@ -3273,5 +3286,36 @@ TextArea.defaultProps = {
     onChangeValue: function onChangeValue(text) {}
 };
 
-export { CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea };
+var FormTranslationContext = React.createContext({
+    renderText: function renderText(text) {
+        return text;
+    }
+});
+
+var FormTranslationConsumer$1 = function (_Component) {
+    inherits(FormTranslationConsumer, _Component);
+
+    function FormTranslationConsumer() {
+        classCallCheck(this, FormTranslationConsumer);
+        return possibleConstructorReturn(this, (FormTranslationConsumer.__proto__ || Object.getPrototypeOf(FormTranslationConsumer)).apply(this, arguments));
+    }
+
+    createClass(FormTranslationConsumer, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return React.createElement(
+                FormTranslationContext.Consumer,
+                null,
+                function (props) {
+                    return _this2.props.children(props);
+                }
+            );
+        }
+    }]);
+    return FormTranslationConsumer;
+}(Component);
+
+export { CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea, FormTranslationContext };
 //# sourceMappingURL=index.es.js.map

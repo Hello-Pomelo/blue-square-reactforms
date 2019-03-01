@@ -109,14 +109,27 @@ var FormItemError = function (_Component) {
     createClass(FormItemError, [{
         key: "render",
         value: function render() {
+            var _this2 = this;
+
             var data = this.props.data;
 
             if (!data || !data.errors || !data.errors[this.props.name]) return null;
 
             return React__default.createElement(
+                FormTranslationConsumer,
+                null,
+                function (translator) {
+                    return _this2.renderError(data, translator);
+                }
+            );
+        }
+    }, {
+        key: "renderError",
+        value: function renderError(data, translator) {
+            return React__default.createElement(
                 "p",
                 { className: "text-danger" },
-                data.errors[this.props.name].error
+                translator.handleText(data.errors[this.props.name].error)
             );
         }
     }]);
@@ -3280,6 +3293,37 @@ TextArea.defaultProps = {
     onChangeValue: function onChangeValue(text) {}
 };
 
+var FormTranslationContext = React__default.createContext({
+    renderText: function renderText(text) {
+        return text;
+    }
+});
+
+var FormTranslationConsumer$1 = function (_Component) {
+    inherits(FormTranslationConsumer, _Component);
+
+    function FormTranslationConsumer() {
+        classCallCheck(this, FormTranslationConsumer);
+        return possibleConstructorReturn(this, (FormTranslationConsumer.__proto__ || Object.getPrototypeOf(FormTranslationConsumer)).apply(this, arguments));
+    }
+
+    createClass(FormTranslationConsumer, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return React__default.createElement(
+                FormTranslationContext.Consumer,
+                null,
+                function (props) {
+                    return _this2.props.children(props);
+                }
+            );
+        }
+    }]);
+    return FormTranslationConsumer;
+}(React.Component);
+
 exports.CheckBox = CheckBox;
 exports.Form = Form;
 exports.Input = Input;
@@ -3289,4 +3333,5 @@ exports.RadioGroup = RadioGroup;
 exports.Radio = Radio;
 exports.Submit = Submit;
 exports.TextArea = TextArea;
+exports.FormTranslationContext = FormTranslationContext;
 //# sourceMappingURL=index.js.map

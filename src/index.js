@@ -7,7 +7,8 @@ import Radio from './Radio'
 import RadioGroup from './RadioGroup'
 import Submit from './Submit'
 import TextArea from './TextArea'
+import FormTranslationContext from './FormTranslationContext'
 
 export {
-    CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea
+    CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea, FormTranslationContext
 }
