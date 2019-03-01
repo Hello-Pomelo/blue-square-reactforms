@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import FormContext from './FormContext';
-import {toast} from 'react-toastify';
+import {toast, ToastContainer} from 'react-toastify';
 
 export default class Form extends Component
 {
@@ -38,6 +38,7 @@ export default class Form extends Component
                     {this.renderError()}
                     {this.props.children}
                 </form>
+                <ToastContainer />
             </FormContext.Provider>
         )
     }

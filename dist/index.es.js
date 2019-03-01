@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import require$$0 from 'prop-types';
+import require$$1 from 'prop-types';
 import reactDom from 'react-dom';
 
 var classCallCheck = function (instance, Constructor) {
@@ -563,7 +563,7 @@ var TransitionGroup_1 = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 exports.default = void 0;
 
-var _propTypes = _interopRequireDefault(require$$0);
+var _propTypes = _interopRequireDefault(require$$1);
 
 var _react = _interopRequireDefault(React);
 
@@ -867,7 +867,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(React);
 
-var _propTypes = _interopRequireDefault(require$$0);
+var _propTypes = _interopRequireDefault(require$$1);
 
 var _classnames = _interopRequireDefault(classnames);
 
@@ -979,7 +979,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(React);
 
-var _propTypes = _interopRequireDefault(require$$0);
+var _propTypes = _interopRequireDefault(require$$1);
 
 var _classnames = _interopRequireDefault(classnames);
 
@@ -1314,7 +1314,7 @@ exports.default = void 0;
 
 var _react = _interopRequireDefault(React);
 
-var _propTypes = _interopRequireDefault(require$$0);
+var _propTypes = _interopRequireDefault(require$$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1348,7 +1348,7 @@ var PropTypes = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 exports.classNamesShape = exports.timeoutsShape = void 0;
 
-var _propTypes = _interopRequireDefault(require$$0);
+var _propTypes = _interopRequireDefault(require$$1);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1382,7 +1382,7 @@ var Transition_1 = createCommonjsModule(function (module, exports) {
 exports.__esModule = true;
 exports.default = exports.EXITING = exports.ENTERED = exports.ENTERING = exports.EXITED = exports.UNMOUNTED = void 0;
 
-var PropTypes$$1 = _interopRequireWildcard(require$$0);
+var PropTypes$$1 = _interopRequireWildcard(require$$1);
 
 var _react = _interopRequireDefault(React);
 
@@ -2149,7 +2149,7 @@ exports.default = void 0;
 
 var _react = _interopRequireWildcard(React);
 
-var _propTypes = _interopRequireDefault(require$$0);
+var _propTypes = _interopRequireDefault(require$$1);
 
 var _classnames = _interopRequireDefault(classnames);
 
@@ -2772,7 +2772,8 @@ var Form = function (_Component) {
                     { onSubmit: this._onSubmit },
                     this.renderError(),
                     this.props.children
-                )
+                ),
+                React.createElement(lib_1, null)
             );
         }
     }, {
