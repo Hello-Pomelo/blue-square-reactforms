@@ -2808,7 +2808,7 @@ var Form = function (_Component) {
         key: 'handleError',
         value: function handleError(props) {
             if (props.data && props.data.error && props.toast && this.displayError == true) {
-                var contextValue = useContext(FormTranslationContext);
+                var contextValue = React.useContext(FormTranslationContext);
                 lib_8.error(contextValue.renderText(props.data.error));
                 this.displayError = false;
             }
