@@ -66,5 +66,6 @@ FilePicker.defaultProps = {
     name: 'file-picker',
     id: 'file-picker',
     className: 'form-control',
+    value: null,
     onChangeValue: (file) => {}
 }

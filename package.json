@@ -59,6 +59,7 @@
     "dist"
   ],
   "dependencies": {
+    "moment": "^2.24.0",
     "react-toastify": "^4.5.2"
   }
 }
