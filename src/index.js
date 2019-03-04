@@ -11,7 +11,4 @@ import FormTranslationContext from './FormTranslationContext'
 import DatePicker from './DatePicker'
 import FilePicker from './FilePicker'
 
-export {
-    CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio,
-    DatePicker, FilePicker, Submit, TextArea, FormTranslationContext
-}
+export { CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, DatePicker, FilePicker, Submit, TextArea, FormTranslationContext }
