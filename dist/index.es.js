@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import require$$1 from 'prop-types';
 import reactDom from 'react-dom';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
     throw new TypeError("Cannot call a class as a function");
@@ -3342,5 +3348,171 @@ TextArea.defaultProps = {
     onChangeValue: function onChangeValue(text) {}
 };
 
-export { CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea, FormTranslationContext };
+var DatePicker = function (_Component) {
+    inherits(DatePicker, _Component);
+
+    function DatePicker() {
+        classCallCheck(this, DatePicker);
+        return possibleConstructorReturn(this, (DatePicker.__proto__ || Object.getPrototypeOf(DatePicker)).apply(this, arguments));
+    }
+
+    createClass(DatePicker, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return React.createElement(
+                FormConsumer,
+                null,
+                function (data) {
+                    return _this2.renderDatePicker(data);
+                }
+            );
+        }
+    }, {
+        key: "renderDatePicker",
+        value: function renderDatePicker(data) {
+            var _this3 = this;
+
+            var props = _extends({}, this.props);
+            if (props.children) delete props.children;
+            if (props.onChangeValue) delete props.onChangeValue;
+            return React.createElement(
+                "div",
+                { className: "form-group" },
+                this.renderLabel(data),
+                React.createElement("input", _extends({ onChange: function onChange(e) {
+                        return _this3.props.onChangeValue(e.target.value);
+                    } }, props)),
+                React.createElement(
+                    "p",
+                    { className: "text-muted" },
+                    "DatePicker ",
+                    this.props.type
+                ),
+                React.createElement(FormItemError, { name: this.props.name, data: data })
+            );
+        }
+    }, {
+        key: "renderLabel",
+        value: function renderLabel(data) {
+            if (this.props.label) {
+                return React.createElement(
+                    "label",
+                    { htmlFor: this.props.id },
+                    this.props.label
+                );
+            }
+        }
+    }]);
+    return DatePicker;
+}(Component);
+
+
+DatePicker.defaultProps = {
+    name: 'input',
+    id: 'input',
+    className: 'form-control',
+    type: 'datetime-local',
+    onChangeValue: function onChangeValue(text) {}
+};
+
+var FilePicker = function (_Component) {
+    inherits(FilePicker, _Component);
+
+    function FilePicker() {
+        classCallCheck(this, FilePicker);
+        return possibleConstructorReturn(this, (FilePicker.__proto__ || Object.getPrototypeOf(FilePicker)).apply(this, arguments));
+    }
+
+    createClass(FilePicker, [{
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            return React.createElement(
+                FormConsumer,
+                null,
+                function (data) {
+                    return _this2.renderFilePicker(data);
+                }
+            );
+        }
+    }, {
+        key: "renderFilePicker",
+        value: function renderFilePicker(data) {
+            var _this3 = this;
+
+            var value = this.props.value;
+            var props = _extends({}, this.props);
+            if (props.children) delete props.children;
+            if (props.onChangeValue) delete props.onChangeValue;
+            if (!(_typeof(props.value) instanceof File)) delete props.value;
+            return React.createElement(
+                "div",
+                { className: "form-group" },
+                this.renderLabel(data),
+                React.createElement("input", _extends({
+                    type: "file",
+                    onChange: function onChange(e) {
+                        return _this3.props.onChangeValue(e.target.value);
+                    } }, props)),
+                this.renderValue(value),
+                React.createElement(FormItemError, { name: this.props.name, data: data })
+            );
+        }
+    }, {
+        key: "renderValue",
+        value: function renderValue(value) {
+            if (value instanceof File) return React.createElement(
+                "p",
+                { className: "text-muted" },
+                value.name,
+                " ",
+                this.renderDeleteButton()
+            );
+
+            if (value !== null) return React.createElement(
+                "p",
+                { className: "text-muted" },
+                value,
+                " ",
+                this.renderDeleteButton()
+            );
+
+            return null;
+        }
+    }, {
+        key: "renderDeleteButton",
+        value: function renderDeleteButton() {
+            var _this4 = this;
+
+            return React.createElement("i", { className: "fa fa-trash", onClick: function onClick() {
+                    _this4.props.onChangeValue(null);
+                } });
+        }
+    }, {
+        key: "renderLabel",
+        value: function renderLabel(data) {
+            if (this.props.label) {
+                return React.createElement(
+                    "label",
+                    { htmlFor: this.props.id },
+                    this.props.label
+                );
+            }
+        }
+    }]);
+    return FilePicker;
+}(Component);
+
+
+FilePicker.defaultProps = {
+    name: 'file-picker',
+    id: 'file-picker',
+    className: 'form-control',
+    onChangeValue: function onChangeValue(file) {}
+};
+
+export { CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, DatePicker, FilePicker, Submit, TextArea, FormTranslationContext };
 //# sourceMappingURL=index.es.js.map

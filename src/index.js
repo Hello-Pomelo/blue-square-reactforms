@@ -8,7 +8,10 @@ import RadioGroup from './RadioGroup'
 import Submit from './Submit'
 import TextArea from './TextArea'
 import FormTranslationContext from './FormTranslationContext'
+import DatePicker from './DatePicker'
+import FilePicker from './FilePicker'
 
 export {
-    CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio, Submit, TextArea, FormTranslationContext
+    CheckBox, Form, Input, Option, OptionGroup, RadioGroup, Radio,
+    DatePicker, FilePicker, Submit, TextArea, FormTranslationContext
 }
